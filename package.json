@@ -29,5 +29,8 @@
   "bugs": {
     "url": "https://github.com/virtualweblab/vwl/issues"
   },
-  "homepage": "https://github.com/virtualweblab/vwl#readme"
+  "homepage": "https://github.com/virtualweblab/vwl#readme",
+  "dependencies": {
+    "st": "^0.5.5"
+  }
 }
