@@ -1,0 +1,33 @@
+{
+  "name": "vwl",
+  "version": "0.0.1",
+  "description": "this is a VirtualWebLab project, you can controlled the shield like arduino without programming in C or C++, no firmata, VWL can create a program compilign and send to shield, but you only grad on the board all you need and no more",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/virtualweblab/vwl.git"
+  },
+  "keywords": [
+    "virtual",
+    "web",
+    "lab",
+    "baboratory",
+    "serial",
+    "port",
+    "arduino",
+    "shield",
+    "raspberry",
+    "pi",
+    "beaglebone",
+    "labview"
+  ],
+  "author": "Mauricio Duque and CEDIA CEPRA IX 02-2015 team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/virtualweblab/vwl/issues"
+  },
+  "homepage": "https://github.com/virtualweblab/vwl#readme"
+}
