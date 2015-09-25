@@ -2,62 +2,23 @@
 
 const app = require('express')()
 const logger = require('../lib/logger')
+const Users = require('../models')
 
 
-/**
- * Locals
- */
-var db = {};
+app.post('/user', function(req, res){
+	logger.info ('POST', req.body)
 
-/**
- * Verbs
- */
+	const users = new Users({
+		userName: 'Michael',
+		userLastName : 'Jackson'
+	})
 
-app.route('/notas/:id?')
+	users.save(function(err){
+		if(err) logger.error('Error to create user: ' + err)
+		else logger.info('User was create')
 
-  .all(function(req, res, next) {
-    logger.info(req.method, req.path, req.body);
-    res.set('Content-Type','application/json');
-    next();
-  })
-
-  // POST
-  .post(function(req, res) {
-
-    // manipulate request
-    var notaNueva = req.body.nota;
-    notaNueva.id = Date.now();
-
-    // save to storage
-    db[notaNueva.id] = notaNueva;
-
-    // response
-    res
-      .status(201)
-      .json({
-        nota: db[notaNueva.id]
-      });
-  })
-
-  // GET
-  .get(function(req, res, next) {
-    var id = req.params.id;
-
-    if (!id) {
-      return next();
-    }
-
-    var nota = db[id];
-
-    if (!nota) {
-      return res
-        .status(404)
-        .send({});
-    }
-
-    res.json({
-      notas: nota
-    })
-  });
+		res.send(users)
+	})
+})
 
 module.exports = app;
