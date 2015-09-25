@@ -1,7 +1,7 @@
 'use strict'
 
 const http = require('http')
-const router = require('./router') 
+const router = require('./router/routes') 
 const logger = require('./lib/logger')
 
 const port = process.env.PORT || 8000
