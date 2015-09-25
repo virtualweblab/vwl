@@ -1,16 +1,23 @@
 'use strict'
 
-const http = require('http')
-const router = require('./router/routes') 
+const express = require('express')
+const router = require('./router') 
 const logger = require('./lib/logger')
+const bodyParser = require('body-parser')
 
+
+const app = module.exports = express()
 const port = process.env.PORT || 8000
-const server = http.createServer()
 
-server.on('request', router)
-server.on('listening', onListening)
+app.use(bodyParser.json('application/json'))
 
-server.listen(port)
+
+app.use(router)
+
+if(!module.parent){
+	app.listen(port, onListening)
+}
+
 
 function onListening(){
 	logger.info(`Server running in port ${port}`)
