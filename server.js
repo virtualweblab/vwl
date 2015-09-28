@@ -3,6 +3,7 @@
 const express = require('express')
 const logger = require('./lib/logger')
 const bodyParser = require('body-parser')
+const methodOverride =require('method-override')
 const mongoose = require('mongoose')
 const path = require('path')
 
@@ -21,9 +22,12 @@ const port = process.env.PORT || 8000
 app.set('views', path.join(__dirname, 'views'))
 
 
-app.use(bodyParser.json('application/json'))
+//app.use(bodyParser.json('application/json'))
 app.use(express.static(path.join(__dirname, 'public')))
 
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+app.use(methodOverride())
 
 app.use('/', routes)
 app.use('/users',users)

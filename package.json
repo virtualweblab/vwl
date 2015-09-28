@@ -4,6 +4,8 @@
   "description": "this is a VirtualWebLab project, you can controlled the shield like arduino without programming in C or C++, no firmata, VWL can create a program compilign and send to shield, but you only grad on the board all you need and no more",
   "main": "server.js",
   "scripts": {
+    "postinstall": "npm run build-js",
+    "build-js": "browserify client/app.js -o public/javascripts/app.js",
     "start": "node server.js",
     "test": "make test"
   },
@@ -34,15 +36,19 @@
   "dependencies": {
     "body-parser": "^1.14.0",
     "course": "0.0.1",
+    "domify": "^1.4.0",
     "express": "^4.13.3",
+    "method-override": "^2.3.5",
     "mongoose": "^4.1.8",
     "passport": "^0.3.0",
     "passport-facebook": "^2.0.0",
     "passport-twitter": "^1.0.3",
     "st": "^0.5.5",
-    "winston": "^1.0.1"
+    "winston": "^1.0.1",
+    "xhr": "^2.1.0"
   },
   "devDependencies": {
+    "browserify": "^11.2.0",
     "chai": "^3.3.0",
     "chai-as-promised": "^5.1.0",
     "mocha": "^2.3.3",

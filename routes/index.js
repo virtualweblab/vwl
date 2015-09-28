@@ -8,5 +8,8 @@ const path = require('path')
 app.get('/', function (req, res){
 	res.sendFile(path.join(__dirname + '/../views/index.html'));
 })
+app.get('/userCreate', function (req, res){
+	res.sendFile(path.join(__dirname + '/../views/userCreate.html'));
+})
 
 module.exports = app
