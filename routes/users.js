@@ -5,12 +5,16 @@ const logger = require('../lib/logger')
 const Users = require('../models')
 
 
+
 app.post('/user', function(req, res){
 	logger.info ('POST', req.body)
 
 	const users = new Users({
 		userName: 'Michael',
-		userLastName : 'Jackson'
+		userLastName : 'Jackson',
+		userEmal : 'any@email.com',
+		userCompany : 'EPN',
+		userRol : 'admin'
 	})
 
 	users.save(function(err){
