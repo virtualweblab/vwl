@@ -19,7 +19,7 @@ const app = express()
 const port = process.env.PORT || 8000
 
 app.set('views', path.join(__dirname, 'views'))
-//app.set('view engine', 'html')
+
 
 app.use(bodyParser.json('application/json'))
 app.use(express.static(path.join(__dirname, 'public')))

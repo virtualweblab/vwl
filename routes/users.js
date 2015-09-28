@@ -4,18 +4,19 @@ const app = require('express')()
 const logger = require('../lib/logger')
 const Users = require('../models')
 
+//POST - Add a new User
+app.post('/user', function (req, res){
 
-
-app.post('/user', function(req, res){
-	logger.info ('POST', req.body)
+	logger.info(req.method, req.path, req.body)
+	res.set('Content-Type','application/json')
 
 	const users = new Users({
-		userName: 'Michael',
-		userLastName : 'Jackson',
-		userEmal : 'any@email.com',
-		userCompany : 'EPN',
-		userRol : 'admin',
-		userPassword : 'nnnnn'
+		/*userName 		: req.body.userName,
+		userLastName 	: req.body.userLastName,
+		userEmal 		: req.body.userEmal,
+		userCompany 	: req.body.userCompany,
+		userRol 		: req.body.userRol,
+		userPassword 	: req.body.userPassword*/
 	})
 
 	users.save(function(err){
@@ -26,21 +27,77 @@ app.post('/user', function(req, res){
 	})
 })
 
-app.get('/users', function(req, res){
-	logger.info('GET', req.body)
+//GET - Find all Users
+app.get('/users', function (req, res){
+
+	logger.info(req.method, req.path, req.body)
+	res.set('Content-Type','application/json')
+
+	Users.find(function(err, users) {
+  		if(!err) {
+            logger.info('GET /users')
+  			res.send(users);
+  		} else {
+  			logger.info('ERROR: ' + err)
+  		}
+  	})
+})
+
+//GET - Find a user with a specific ID
+
+app.get('/users/:user_id', function (req, res){
+
+	logger.info(req.method, req.path, req.body)
+	res.set('Content-Type','application/json')
+
+	Users.findById(req.params.id, function(err, users) {
+  		if(!err) {
+            logger.info('GET /users/' + req.params.id)
+  			res.send(users)
+  		} else {
+  			logger.error('ERROR: ' + err)
+  		}
+  	})
 
 })
 
-app.get('/users/:user_id', function(req,res){
-	logger.info('GET a single user', req.body)
+//PUT - Update a register already exists
+
+app.put('/users/:user_id', function (req, res){
+
+	logger.info(req.method, req.path, req.body)
+	res.set('Content-Type','application/json')
+
+	Users.findById(req.params.id, function(err, users) {
+  		
+  	/*	userName 		= req.body.userName,
+		userLastName 	= req.body.userLastName,
+		userEmal 		= req.body.userEmal,
+		userCompany 	= req.body.userCompany,
+		userRol 		= req.body.userRol,
+		userPassword 	= req.body.userPassword*/
+
+  		Users.save(function(err) {
+  			if(!err) logger.info('Updated')
+  			else logger.error('ERROR: ' + err)
+  			
+  			res.send(users)
+  		})
+  	})
 })
 
-app.put('/users/:user_id', function(req,res){
-	logger.info('GET a single user', req.body)
-})
+// DELETE - a specific user 
+app.delete('/users/:user_id', function (req, res){
 
-app.delete('/users/:user_id', function(req,res){
-	logger.info('GET a single user', req.body)
+	logger.info(req.method, req.path, req.body)
+	res.set('Content-Type','application/json')
+
+	Users.findById(req.params.id, function(err, users) {
+  		users.remove(function(err) {
+  			if(!err) logger.info('Removed')
+  			else logger.error('ERROR: ' + err)
+  		})
+  	})
 })
 
 module.exports = app;

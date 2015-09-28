@@ -36,6 +36,9 @@
     "course": "0.0.1",
     "express": "^4.13.3",
     "mongoose": "^4.1.8",
+    "passport": "^0.3.0",
+    "passport-facebook": "^2.0.0",
+    "passport-twitter": "^1.0.3",
     "st": "^0.5.5",
     "winston": "^1.0.1"
   },
