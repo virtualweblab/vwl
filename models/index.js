@@ -8,7 +8,8 @@ var userSchema = new Schema({
 	userLastName : { type : String},
 	userEmal : { type : String},
 	userCompany : { type : String},
-	userRol : { type : String}
+	userRol : { type : String},
+	userPassword : { type : String}
 })
 
 module.exports = mongoose.model('Users', userSchema)

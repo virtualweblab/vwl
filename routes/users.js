@@ -14,7 +14,8 @@ app.post('/user', function(req, res){
 		userLastName : 'Jackson',
 		userEmal : 'any@email.com',
 		userCompany : 'EPN',
-		userRol : 'admin'
+		userRol : 'admin',
+		userPassword : 'nnnnn'
 	})
 
 	users.save(function(err){
@@ -23,6 +24,23 @@ app.post('/user', function(req, res){
 
 		res.send(users)
 	})
+})
+
+app.get('/users', function(req, res){
+	logger.info('GET', req.body)
+
+})
+
+app.get('/users/:user_id', function(req,res){
+	logger.info('GET a single user', req.body)
+})
+
+app.put('/users/:user_id', function(req,res){
+	logger.info('GET a single user', req.body)
+})
+
+app.delete('/users/:user_id', function(req,res){
+	logger.info('GET a single user', req.body)
 })
 
 module.exports = app;
